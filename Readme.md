@@ -27,35 +27,38 @@ Project setup
 Let’s start by setting up the required dependencies and permissions.
 First, let’s declare the required INTERNET permission in your AndroidManifest.xml file:
 
-<uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.INTERNET" />
 Then, setup the Hilt required dependencies in your project-level build.gradle file:
 classpath 'com.google.dagger:hilt-android-gradle-plugin:2.38.1'
 Finally, declare the dependencies in your application level build.gradle file:
-plugins {
-    ...
-    id 'kotlin-kapt'
-    id 'dagger.hilt.android.plugin'
-}
-android {
-    ...
+
+    plugins {
+    
+        id 'kotlin-kapt'
+        id 'dagger.hilt.android.plugin'
+    }
+    
+    android {
+
     // Enable view binding
     buildFeatures {
         viewBinding true
     }
-}
-dependencies {
-    ...
-    // Lifecycle
-    implementation 'androidx.fragment:fragment-ktx:1.3.6'
-    // Hilt
-    implementation "com.google.dagger:hilt-android:2.38.1"
-    kapt "com.google.dagger:hilt-compiler:2.38.1"
 
-    // Retrofit
-    implementation 'com.squareup.retrofit2:retrofit:2.9.0' 
-    // Retrofit Gson converter
-    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
-}
+    dependencies {
+    
+        // Lifecycle
+        implementation 'androidx.fragment:fragment-ktx:1.3.6'
+        // Hilt
+        implementation "com.google.dagger:hilt-android:2.38.1"
+        kapt "com.google.dagger:hilt-compiler:2.38.1"
+
+        // Retrofit
+        implementation 'com.squareup.retrofit2:retrofit:2.9.0' 
+        // Retrofit Gson converter
+        implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+    }
+
 Once you have set up and synched your dependencies you are ready to pass to the implementation phase.
 
 Project implementation
@@ -72,6 +75,7 @@ In the MVVM architecture, every component depends on one of the levels below.
    This is a representation of the data received from the API.
    You need to represent this model in your application.
    Create a new CatFact.kt class in your model folder and specify its properties:
+   
    data class CatFact (
    @SerializedName("fact")
    @Expose
@@ -81,15 +85,19 @@ In the MVVM architecture, every component depends on one of the levels below.
    @Expose
    var length: Int
    )
+   
    Note that I used two annotations on each attribute:
    SerializedName indicates that the property should be serialized with the specified name.
    Expose indicates that the property should be exposed for JSON serialization and deserialization.
    This will be used by the Gson converter at the moment of decoding and encoding data.
+   
 2. Declaring Hilt base Application
    Let’s build the basis for automatic dependency injection.
    Create a new class annotated with HiltAndroidApp in your application main folder.
+   
    @HiltAndroidApp
    class CatFactApplication : Application()
+   
    This will serve as the parent container for all injected dependencies.
    After creating the class you need to specify it in your AndroidManifest.xml file.
    <application
