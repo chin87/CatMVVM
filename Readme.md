@@ -217,6 +217,4 @@ In the MVVM architecture, every component depends on one of the levels below.
        Notice that I used an Observer to look for changes in the view model catFact variable.
        Every time a new fact is available, the TextView will be updated.
 
-    
-
-
+https://medium.com/codex/get-started-with-mvvm-in-android-959e7666caa5
