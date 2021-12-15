@@ -1,0 +1,27 @@
+*.iml
+.gradle/
+build/
+/local.properties
+/.idea/caches
+/.idea/libraries
+/.idea/modules.xml
+/.idea/workspace.xml
+/.idea/navEditor.xml
+/.idea/assetWizardSettings.xml
+.idea/
+
+/build
+/captures
+.externalNativeBuild
+.cxx
+local.properties
+
+# OS
+.DS_Store
+
+#jacoco
+*.exec
+
+#Strings
+resources/**/strings.xml
+app/**/poeditor.properties
